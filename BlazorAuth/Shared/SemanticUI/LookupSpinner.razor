@@ -1,0 +1,53 @@
+﻿<div class="ui">
+    @if (Status == SearchStatus.Searching)
+    {
+        <div class="ui segment">
+            <div class="ui active dimmer">
+                <div class="ui text loader">@Text</div>
+            </div>
+            <p></p>
+        </div>
+    }
+    @if (Status == SearchStatus.OK)
+    {
+        <div class="ui green message">
+            <i class="check icon"></i>@Text
+        </div>
+    }
+    @if (Status == SearchStatus.NotOK)
+    {
+        <div class="ui red message">
+            <i class="times icon"/>@Text
+        </div>
+    }
+    @if (Status == SearchStatus.NotActivated)
+    {
+        <div>@Text</div>
+    }
+</div>
+
+
+@code {
+
+    public enum SearchStatus
+    {
+        NotActivated,
+        Searching,
+        OK,
+        NotOK
+    }
+
+    [Parameter]
+    public string Text { get; set; } = string.Empty;
+
+    [Parameter]
+    public SearchStatus Status { get; set; } = SearchStatus.NotActivated;
+
+    public void SetStatus(SearchStatus s, string text)
+    {
+        Text = text;
+        Status = s;
+        StateHasChanged();
+    }
+
+}

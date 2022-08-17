@@ -1,0 +1,17 @@
+﻿<div class="ui red message" hidden="@(!Show)">
+    <div class="header">@Header</div>
+    @ChildContent
+</div>
+
+@code {
+
+    [Parameter]
+    public bool Show { get; set; } = false;
+
+    [Parameter]
+    public string Header { get; set; } = string.Empty;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+}

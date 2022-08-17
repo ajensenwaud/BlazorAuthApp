@@ -1,0 +1,31 @@
+﻿@page "/"
+@inherits BlazorAuthComponentBase;
+@using BlazorAuth.Data
+@using System.Security.Claims
+@using BlazorAuth.Services
+@using BlazorAuth.Shared.SemanticUI
+@using BlazorAuth.Shared.Components
+@inject AuthenticationStateProvider AuthenticationStateProvider 
+@inject AuthenticationService WebsiteAuth
+
+
+<Header4>Landing page</Header4>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>Welcome! You are authenticated!</p>
+}
+else
+{
+    <p>Please log in to proceed. You are not logged in.</p>
+}
+
+@code {
+    private ClaimsPrincipal User { get; set; }
+
+    protected async override void OnInitialized()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        User = authState.User;
+    }
+}

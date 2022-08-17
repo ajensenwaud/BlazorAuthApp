@@ -1,0 +1,51 @@
+﻿@page "/reset"
+@using BlazorAuth.Models
+@using BlazorAuth.Services
+@using BlazorAuth.Shared.SemanticUI
+@inject EmailService EmailService;
+@inject NavigationManager NavManager;
+@inject AuthenticationService AuthenticationService;
+
+<Header4>Password reset</Header4>
+
+<AuthorizeView>
+    <NotAuthorized>
+        <EditForm class="ui form" Model="PasswordResetRequestModel" OnValidSubmit="SendResetEmail" Context="LOL">
+            <div class="container">
+                <div class="field">
+                    <label>Email</label>
+                    <InputText type="email" @bind-Value="PasswordResetRequestModel.Email" id="email"></InputText>
+                </div>
+                <button class="ui button">Send password reset link</button>
+            </div>
+            @if (EmailSent)
+            {
+                <div class="ui positive message">
+                    <div class="header">Email sent</div>
+                    <p>Thank you. We have sent an email to your email account (if it exists) with a link to reset your password.</p>
+                </div>
+            }
+        </EditForm>
+    </NotAuthorized>
+</AuthorizeView>
+
+
+
+@code {
+
+    private PasswordResetRequestModel PasswordResetRequestModel { get; set; } = new();
+
+    private bool EmailSent { get; set; } = false;
+
+
+    private async void SendResetEmail()
+    {
+        var user = AuthenticationService.GetByEmail(PasswordResetRequestModel.Email);
+        var resetKey = AuthenticationService.SetPasswordResetKey(user);
+        var baseUrl = NavManager.BaseUri + "/confirmreset/";
+        await EmailService.SendResetEmail(user.Email, $"{user.FirstName} {user.LastName}", baseUrl, resetKey);
+        EmailSent = true;
+        StateHasChanged();
+    }
+
+}

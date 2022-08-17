@@ -1,0 +1,136 @@
+﻿@page "/admin/edituser/{Id}"
+@inherits BlazorAuthComponentBase;
+@using Microsoft.AspNetCore.Identity
+@using BlazorAuth.Data
+@using Microsoft.AspNetCore.Components
+@using BlazorAuth.Models
+@using BlazorAuth.Shared.Components
+@using BlazorAuth.Shared.SemanticUI
+@inject UserManager<BlazorAuthUser> UserManager;
+@inject NavigationManager NavManager;
+
+<h4 class="ui dividing header">Edit user account</h4>
+
+<AuthorizeView Roles="Admin">
+    <Authorized>
+        <EditForm Context="jill" Model="User" class="ui form" OnSubmit="@HandleValidSubmit">
+            <div class="field">
+                <label>Username</label>
+                <small>Choose your username wisely. The username will be visible to other users on the site.</small>
+                <InputText type="text" @bind-Value="UserEditFormModel.Username" id="username" ></InputText>
+                <ValidationMessage class="ui red message" For="() => User.UserName"/>
+            </div>
+            <div class="field">
+                <label>Email</label>
+                <InputText type="text" @bind-Value="UserEditFormModel.Email" id="email" ></InputText>
+                <ValidationMessage class="ui red message" For="() => User.Email"/>
+            </div>
+            <div class="field">
+                <label>First name</label>
+                <InputText type="text" @bind-Value="UserEditFormModel.FirstName" id="firstname" ></InputText>
+                <ValidationMessage class="ui red message" For="() => User.FirstName"/>
+            </div>
+            <div class="field">
+                <label>Last name</label>
+                <InputText type="text" @bind-Value="UserEditFormModel.LastName" id="lastname" ></InputText>
+                <ValidationMessage class="ui red message" For="() => User.LastName" />
+            </div>
+            <div class="field">
+                <label>New password</label>
+                <InputText type="text" @bind-Value="NewPassword" id="password" ></InputText>
+                <ValidationMessage class="ui red message" For="() => NewPassword" />
+            </div>
+            <div class="ui segment">
+                <div class="field">
+                    <div class="ui toggle checkbox">
+                        <InputCheckbox id="lockout" @bind-Value="UserEditFormModel.LockoutEnabled"/>
+                        <label>
+                            Lock-out enabled?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="ui segment">
+                <div class="field">
+                    <div class="ui toggle checkbox">
+                        <InputCheckbox id="emailconfirmed" @bind-Value="UserEditFormModel.EmailConfirmed"/>
+                        <label>
+                            Email confirmed?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="ui segment">
+                <div class="field">
+                    <div class="ui toggle checkbox">
+                        <InputCheckbox id="above18" @bind-Value="UserEditFormModel.Above18"/>
+                        <label>
+                            Above 18?
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="ui button">Save changes</button>
+            <button type="submit" class="ui button" @onclick=@(() => NavManager.NavigateTo("admin/adminzone"))>Go back</button>
+            
+            <Confirmation Show="UserChangesSaved" Header="User information change">Successfully saved changes to the user to the database</Confirmation>
+            <Confirmation Show="PasswordChangesSaved" Header="Password change">Successfully saved new passsword for the user to the database</Confirmation>    
+            
+        </EditForm>
+    </Authorized>
+</AuthorizeView>
+
+@code {
+
+    [Parameter]
+    public string Id { get; set; }
+ 
+    public BlazorAuthUser User { get; set; }
+
+    public string NewPassword { get; set; } = string.Empty;
+
+    public UserEditFormModel UserEditFormModel { get; set; }
+
+    protected bool UserChangesSaved { get; set; } = false;
+    
+    protected bool PasswordChangesSaved { get; set; } = false;
+
+    protected override async void OnInitialized()
+    {
+        UserChangesSaved = false;
+        PasswordChangesSaved = false;
+        User = await UserManager.FindByIdAsync(Id);
+        UserEditFormModel = new()
+        {
+            Above18 = User.Is18OrAbove,
+            FirstName = User.FirstName,
+            LastName = User.LastName,
+            Email = User.Email,
+            LockoutEnabled = User.LockoutEnabled,
+            EmailConfirmed = User.EmailConfirmed,
+            Username = User.UserName,
+            Password = string.Empty
+        };
+    }
+
+    private async void HandleValidSubmit()
+    {
+        User.FirstName = UserEditFormModel.FirstName;
+        User.LastName = UserEditFormModel.LastName;
+        User.Email = UserEditFormModel.Email;
+        User.LockoutEnabled = UserEditFormModel.LockoutEnabled;
+        User.EmailConfirmed = UserEditFormModel.EmailConfirmed;
+        var updateRes = await UserManager.UpdateAsync(User);
+        UserChangesSaved = updateRes.Succeeded;
+
+        if (!string.IsNullOrWhiteSpace(NewPassword))
+        {
+            // Password needs to be updated as well
+            var token = await UserManager.GeneratePasswordResetTokenAsync(User);
+            var passwdres = await UserManager.ResetPasswordAsync(User, token, NewPassword);
+            PasswordChangesSaved = passwdres.Succeeded;
+        }
+        StateHasChanged();
+    }
+
+}

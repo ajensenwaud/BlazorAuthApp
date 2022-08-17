@@ -1,0 +1,22 @@
+﻿@if (Show)
+{
+    <div class="ui segment">
+        @if (Header.Length > 0)
+        {
+            <h4 class="ui header">@Header</h4>
+        }
+        @ChildContent
+    </div>
+    
+}
+
+@code {
+    [Parameter]
+    public bool Show { get; set; } = true;
+
+    [Parameter]
+    public string Header { get; set; } = string.Empty;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
