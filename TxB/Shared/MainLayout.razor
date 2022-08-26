@@ -1,0 +1,33 @@
+﻿@using TxB.Data
+@using TxB.Shared.SemanticUI
+@inherits LayoutComponentBase
+@inject SessionState SessionState;
+
+<PageTitle>Fintech proposition generator</PageTitle>
+
+<div class="ui container">
+    <h2 class="ui dividing header">Fintech proposition generator</h2>
+    <div class="ui menu">
+        <NavigationLink Href="/">Home</NavigationLink>
+        <AuthorizeView Roles="Admin, User">
+            <NotAuthorized>
+                <NavigationLink Href="/login">Log in</NavigationLink>
+                <NavigationLink Href="/register">Sign up</NavigationLink>
+            </NotAuthorized>
+            <Authorized>
+                <NavigationLink Href="/profile">My profile</NavigationLink>
+                <NavigationLink Href="/logout">Log out</NavigationLink>
+            </Authorized>
+        </AuthorizeView>
+        
+        <NavigationLink Href="/about">About</NavigationLink>
+
+        <AuthorizeView Roles="Admin">
+            <Authorized>
+                <NavigationLink Href="/admin/users">Manage users</NavigationLink>
+                <NavigationLink Href="/admin/words">Manage word library</NavigationLink>
+            </Authorized>
+        </AuthorizeView>
+    </div>
+    @Body
+</div>

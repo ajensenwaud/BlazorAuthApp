@@ -1,0 +1,73 @@
+﻿@page "/Submit"
+@using TxB.Data
+@using TxB.Services
+@inject SessionState _sessionState;
+@inject WordService _wordService;
+<Header4>Submit new word / sentence</Header4>
+
+<AuthorizeView>
+    <Authorized>
+        <div Context="Rubbish">
+            <h1>Have to redirect somehow...</h1>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <EditForm Context="registration" Model="NewWord" class="ui form" OnSubmit="@HandleValidSubmit">
+            <h4 class="ui dividing header">New word</h4>
+            <DataAnnotationsValidator />
+            <Segment Header="Submit new word">
+                <div class="field">
+                    <label>Suggested word</label>
+                    <InputText type="text" @bind-Value="NewWord.Text" hidden="wordText" placeholder="Enter your suggested word"></InputText>
+                    <ValidationMessage For="() => NewWord.Text"/>
+                </div>
+                <Field Label="What type of property is it?">
+                    <InputSelect @bind-Value="@NewWord.WordType" class="ui selection dropdown">
+                        @foreach (var wt in Enum.GetValues(typeof(WordType)))
+                        {
+                            <option value="@wt">@wt</option>
+                        }
+                    </InputSelect>
+                </Field>
+            </Segment>
+        </EditForm>
+        
+        <Confirmation Show="@ShowConfirmation" Header="Account created">
+            Your suggestion has been submitted. An admin will review soon!
+        </Confirmation>
+        <Warning Show="@ShowError" Header="Submission error">
+            An error occured whilst processing your submission. Please contact support.
+        </Warning>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    
+    public Word NewWord { get; set; }
+
+    public bool ShowConfirmation { get; set; } = false;
+
+    public bool ShowError { get; set; } = false;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        
+        NewWord = new Word();
+        NewWord.Status = WordStatus.Draft;
+        if (_sessionState.CurrentUser != null) NewWord.SubmittedBy = _sessionState.CurrentUser;
+    }
+
+    private void HandleValidSubmit()
+    {
+        var c = _wordService.SaveWord(NewWord);
+        if (c > 0)
+        {
+            ShowConfirmation = true;
+        }
+        else
+        {
+            ShowError = true;
+        }
+    }
+}

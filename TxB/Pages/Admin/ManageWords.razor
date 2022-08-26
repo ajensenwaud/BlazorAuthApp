@@ -1,0 +1,79 @@
+﻿@page "/admin/words"
+@inherits BlazorAuthComponentBase;
+@using TxB.Data
+@using Microsoft.AspNetCore.Identity
+@using TxB.Services
+@using TxB.Shared.Components
+@inject IdentityContext IdContext;
+@inject UserManager<ApplicationUser> UserManager;
+@inject ILogger<ManageWords> logger;
+@inject SessionState sessionState;
+@inject WordService WordService;
+@inject NavigationManager NavigationManager;
+
+<PageTitle>Edit words</PageTitle>
+
+<h3>Edit words</h3>
+<AuthorizeView Roles="Admin, User">
+    <Authorized>
+        <div>
+            <table class="ui celled table">
+                <tr>
+                    <th>ID</th>
+                    <th>Word</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Submitted by</th>
+                    <th>Commands</th>
+                </tr>
+                @foreach (var w in Words)
+                {
+                    <tr>
+                        <td data-label="ID">@w.Id</td>
+                        <td data-label="Word">@w.Text</td>
+                        <td data-label="Type">@w.WordType</td>
+                        <td data-label="Status">@w.Status</td>
+                        <td data-label="Submitted by">@w.SubmittedBy.ToString()</td>
+                        <td data-label="Commands">
+                            <button class="ui button" @onclick="@(() => EditUser(w))">Edit</button>
+                            <button class="ui button yellow" @onclick="@(() => MakeDraft(w))">Set draft</button>
+                            <button class="ui button green" @onclick="@(() => Publish(w))">Publish</button>
+                            <button class="ui button red" @onclick="@(() => Delete(w))">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </Authorized>
+</AuthorizeView>
+
+@code {
+    private IEnumerable<Word> Words { get; set; }
+
+    protected override void OnInitialized()
+    {
+        // Words = WordService.GetWordsNot(WordStatus.Deleted);
+        Words = WordService.GetWords();
+    }
+
+    protected async void Delete(Word w)
+    {
+        WordService.SetStatus(w.Id, WordStatus.Deleted);        
+    }
+    
+    protected async void MakeDraft(Word w)
+    {
+        WordService.SetStatus(w.Id, WordStatus.Draft);        
+    }
+    
+    protected async void Publish(Word w)
+    {
+        WordService.SetStatus(w.Id, WordStatus.Published);        
+    }
+
+    protected void EditUser(Word w)
+    {
+        NavigationManager.NavigateTo($"/admin/editword/{w.Id}");
+    }
+
+}

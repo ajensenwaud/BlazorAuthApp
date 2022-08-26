@@ -1,0 +1,98 @@
+﻿@page "/admin/editword/{Id}"
+@inherits BlazorAuthComponentBase;
+@using TxB.Data
+@using Microsoft.AspNetCore.Components
+@using TxB.Models
+@using TxB.Services
+@using TxB.Shared.Components
+@using TxB.Shared.SemanticUI
+@inject NavigationManager NavManager;
+@inject WordService WordService;
+
+<h4 class="ui dividing header">Edit user account</h4>
+
+<AuthorizeView Roles="Admin">
+    <Authorized>
+        <EditForm Context="jill" Model="CurrentWord" class="ui form" OnSubmit="@HandleValidSubmit">
+            
+            <h4 class="ui dividing header">New word</h4>
+                <DataAnnotationsValidator />
+                <Segment Header="Submit new word">
+                    <div class="field">
+                        <label>Suggested word</label>
+                        <InputText type="text" @bind-Value="CurrentWord.Text" placeholder="Enter your suggested word"></InputText>
+                        <ValidationMessage For="() => CurrentWord.Text"/>
+                    </div>
+                    <Field Label="What is the status of the word?">
+                        <InputSelect @bind-Value="@CurrentWord.Status" class="ui selection dropdown">
+                            @foreach (var s in Enum.GetValues(typeof(WordStatus)))
+                            {
+                                @if (CurrentWord.Status.ToString() == @s.ToString())
+                                {
+                                    <option selected value="@s">@s</option>    
+                                }
+                                else
+                                {
+                                    <option value="@s">@s</option>
+                                }
+                                
+                            }
+                        </InputSelect>
+                    </Field>
+                    <Field Label="What type of word is it?">
+                        <InputSelect @bind-Value="@CurrentWord.WordType" class="ui selection dropdown">
+                            @foreach (var wt in Enum.GetValues(typeof(WordType)))
+                            {
+                                @if (CurrentWord.WordType.ToString() == @wt.ToString())
+                                {
+                                    <option selected value="@wt">@wt</option>    
+                                }
+                                else
+                                {
+                                    <option value="@wt">@wt</option>
+                                }
+                                
+                            }
+                        </InputSelect>
+                    </Field>
+                    <button type="submit" class="ui button">Save changes</button>
+                    <button type="submit" class="ui button" @onclick=@(() => NavManager.NavigateTo("admin/words"))>Go back</button>
+                    <Confirmation Show="ChangesSaved" Header="User information change">Successfully saved changes to the user to the database</Confirmation>
+                </Segment>
+            
+
+                
+                
+            </EditForm>
+
+            
+
+
+        </Authorized>
+</AuthorizeView>
+
+@code {
+
+    [Parameter]
+    public string Id { get; set; }
+ 
+    public Word CurrentWord { get; set; }
+
+
+    protected override async void OnInitialized()
+    {
+        CurrentWord = WordService.GetWord(long.Parse(Id));
+    }
+
+    private async void HandleValidSubmit()
+    {
+        var w = WordService.GetWord(CurrentWord.Id);
+        w.Status = CurrentWord.Status;
+        w.Text = CurrentWord.Text;
+        w.WordType = CurrentWord.WordType;
+        WordService.UpdateWord(w);
+        ChangesSaved = true;
+    }
+
+    public bool ChangesSaved { get; set; } = false;
+}

@@ -1,0 +1,157 @@
+﻿@page "/profile"
+@inherits BlazorAuthComponentBase
+@using TxB.Data
+@using TxB.Models
+@using TxB.Shared.Components
+@using TxB.Shared.SemanticUI
+@using Microsoft.AspNetCore.Identity
+@inject NavigationManager NavigationManager;
+@inject SessionState SessionState;
+@inject UserManager<ApplicationUser> UserManager;
+
+<AuthorizeView Roles="Admin, User">
+    <Authorized>
+        <h4 class="ui dividing header">Edit account details</h4>
+        <EditForm Context="jill" Model="UserEditFormModel" class="ui form" OnSubmit="@HandleChangeAccountDetails">
+            <div class="field">
+                <label>Username</label>
+                <InputText disabled="true" type="text" @bind-Value="UserEditFormModel.Username" id="username" ></InputText>
+                <ValidationMessage class="ui red message" For="() => User.UserName"/>
+            </div>
+            <div class="field">
+                <label>Email</label>
+                <InputText disabled="true" type="text" @bind-Value="UserEditFormModel.Email" id="email" ></InputText>
+                <ValidationMessage class="ui red message" For="() => User.Email"/>
+            </div>
+            <div class="field">
+                <label>First name</label>
+                <InputText type="text" @bind-Value="UserEditFormModel.FirstName" id="firstname" ></InputText>
+                <ValidationMessage class="ui red message" For="() => User.FirstName"/>
+            </div>
+            <div class="field">
+                <label>Last name</label>
+                <InputText type="text" @bind-Value="UserEditFormModel.LastName" id="lastname" ></InputText>
+                <ValidationMessage class="ui red message" For="() => User.LastName" />
+            </div>
+            <button type="submit" class="ui button">Save account details</button>
+
+            <Confirmation Show=@ShowUserChangeConfirmation Header="Details updated">
+                <p>Your account details have been successfully updated.</p>
+            </Confirmation>
+            <RentalRatings.Shared.SemanticUI.Warning Show=@ShowUserChangeError Header="Unexpected error">
+                <p>An unexpected error occurred. Please contact support.</p>
+            </RentalRatings.Shared.SemanticUI.Warning>
+        </EditForm>
+
+        <h4 class="ui dividing header">Change password</h4>
+        <EditForm Context="jill" Model="ChangePasswordFormModel" class="ui form" OnSubmit="@HandleChangePassword">
+            <div class="field">
+                <label>Enter your current password:</label>
+                <InputText type="password" @bind-Value="ChangePasswordFormModel.CurrentPassword" id="currentPassword" ></InputText>
+                <ValidationMessage class="ui red message" For="() => ChangePasswordFormModel.CurrentPassword"/>
+            </div>
+            <div class="field">
+                <label>Provide your new password:</label>
+                <InputText type="password" @bind-Value="ChangePasswordFormModel.NewPassword" id="newPassword" ></InputText>
+                <ValidationMessage class="ui red message" For="() => ChangePasswordFormModel.NewPassword"/>
+            </div>
+            <button type="submit" class="ui button">Update password</button>
+            <Confirmation Show=@ShowPasswordChangeConfirmation Header="Details updated">
+                <p>Your password has been updated successfully.</p>
+            </Confirmation>
+            <Warning Show=@ShowPasswordChangeError Header="Error">
+                <p>@PasswordChangeErrorText</p>
+            </Warning>
+
+        </EditForm>    
+
+    </Authorized>
+</AuthorizeView>
+
+
+@code {
+
+    private ApplicationUser User { get; set; }
+
+    private UserEditFormModel UserEditFormModel { get; set; }
+
+    private ChangePasswordFormModel ChangePasswordFormModel { get; set; }
+
+    protected bool ShowUserChangeConfirmation { get; set; }
+    protected bool ShowUserChangeError { get; set; }
+
+    protected bool ShowPasswordChangeConfirmation { get; set; }
+    protected bool ShowPasswordChangeError { get; set; }
+    protected string PasswordChangeErrorText { get; set; } = string.Empty; 
+
+
+
+    protected override async void OnInitialized()
+    {
+        base.OnInitialized();
+        if (!SessionState.IsAuthenticated)
+            NavigationManager.NavigateTo("/");
+
+        User = await UserManager.FindByIdAsync(SessionState.CurrentUser?.Id.ToString());
+        UserEditFormModel = new();
+        UserEditFormModel.Username = User.UserName;
+        UserEditFormModel.FirstName = User.FirstName;
+        UserEditFormModel.LastName = User.LastName;
+        UserEditFormModel.Email = User.Email;
+        UserEditFormModel.Above18 = User.Is18OrAbove;
+
+        ChangePasswordFormModel = new ChangePasswordFormModel();
+    }
+
+    private async void HandleChangeAccountDetails()
+    {
+        var u = await GetCurrentUser();
+        u.FirstName = UserEditFormModel.FirstName;
+        u.LastName = UserEditFormModel.LastName;
+        u.UpdatedAt = DateTime.Now;
+        var updateRes = await UserManager.UpdateAsync(u);
+        SessionState.CurrentUser = u;
+
+        if (updateRes.Succeeded)
+        {
+            ShowUserChangeConfirmation = true;
+        }
+        else
+        {
+            ShowUserChangeError = true;
+        }
+        StateHasChanged();
+    }
+
+    private async void HandleChangePassword()
+    {
+        var u = await GetCurrentUser();
+        // Validate current password:
+        bool currentPasswordCorrect = await UserManager.CheckPasswordAsync(u, ChangePasswordFormModel.CurrentPassword);
+        if (!currentPasswordCorrect)
+        {
+            PasswordChangeErrorText = "The password you provided is incorrect. Please try again.";
+            ShowPasswordChangeError = true;
+            StateHasChanged();
+            return;
+        }
+
+        var u1 = await GetCurrentUser();
+        var token = await UserManager.GeneratePasswordResetTokenAsync(u1);
+        var passwdres = await UserManager.ResetPasswordAsync(u1, token, ChangePasswordFormModel.NewPassword);
+        if (passwdres.Succeeded)
+        {
+            ShowPasswordChangeConfirmation = true;
+        } else
+        {
+            ShowPasswordChangeError = true;
+            PasswordChangeErrorText = "An unexpected error occurred happened while changing your password. Please try again or contact support.";
+        }
+        StateHasChanged();
+    }
+
+    private async Task<ApplicationUser> GetCurrentUser()
+    {
+        return await UserManager.FindByIdAsync(SessionState.CurrentUser?.Id.ToString());
+    }
+}

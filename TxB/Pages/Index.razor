@@ -1,0 +1,47 @@
+﻿@page "/"
+@inherits BlazorAuthComponentBase;
+@using TxB.Data
+@using System.Security.Claims
+@using System.Xml
+@using TxB.Services
+@using TxB.Shared.SemanticUI
+@using TxB.Shared.Components
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject WordService WordService 
+@inject AuthenticationService WebsiteAuth
+
+<div class="ui container">
+    <h4 class="ui header">Your transaction banking proposition is ...</h4>
+    <h3 class="ui block header">@Proposition.ToString()</h3>
+    <button @onclick="RefreshProposition" class="ui button massive primary">
+        <i class=" refresh icon"></i>
+        Give me a new one, please!
+    </button>
+</div>
+
+<div class="ui container">
+    <p><a href="/register">Create a profile</a> to contribute new words to the database!</p>
+</div>
+
+
+@code {
+    private ClaimsPrincipal User { get; set; }
+
+    private Proposition Proposition { get; set; }
+    
+    protected async override void OnInitialized()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        User = authState.User;
+        var prop = WordService.GenerateProposition();
+        Proposition = prop;
+    }
+
+    private void RefreshProposition()
+    {
+        var prop = WordService.GenerateProposition();
+        Proposition = prop;
+        StateHasChanged();
+    }
+
+}

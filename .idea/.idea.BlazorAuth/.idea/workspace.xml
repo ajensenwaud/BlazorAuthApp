@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5e58e05f-56a2-4c9a-bea3-1618b6fe5c57" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.BlazorAuth/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TxB/Data/Proposition.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TxB/Data/Rating.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TxB/Data/Word.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TxB/Pages/_ViewImports.cshtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TxB/Services/WordService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TxB/TxBAdjectives.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TxB/TxBNouns.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TxB/Util/DataInitializer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlazorAuth/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlazorAuth/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlazorAuth/.idea/indexLayout.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlazorAuth/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/config/applicationhost.config" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/config/applicationhost.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth.sln" beforeDir="false" afterPath="$PROJECT_DIR$/TxB.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/App.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/App.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/BlazorAuth.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/TxB.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Data/BlazorAuthRole.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Data/ApplicationRole.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Data/BlazorAuthUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Data/ApplicationUser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Data/IdentityContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Data/IdentityContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Data/SessionState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Data/SessionState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Migrations/20220817145609_InitialMigration.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Migrations/20220817145609_InitialMigration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Migrations/IdentityContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Models/ChangePasswordFormModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Models/ChangePasswordFormModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Models/LoginFormModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Models/LoginFormModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Models/PasswordResetRequestModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Models/PasswordResetRequestModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Models/RegisterFormModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Models/RegisterFormModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Models/ResetPasswordModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Models/ResetPasswordModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Models/UserEditFormModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Models/UserEditFormModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/Admin/EditUser.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Pages/Admin/EditUser.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/Admin/ManageUsers.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Pages/Admin/ManageUsers.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/Error.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Pages/Error.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/Error.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Pages/Error.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/Identity/Activate.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Pages/Identity/Activate.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/Identity/ConfirmReset.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Pages/Identity/ConfirmReset.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/Identity/Login.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Pages/Identity/Login.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/Identity/Profile.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Pages/Identity/Profile.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/Identity/Register.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Pages/Identity/Register.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/Identity/Reset.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Pages/Identity/Reset.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Pages/Index.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Pages/Shared/_Layout.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/Shared/_LoginPartial.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Pages/Shared/_LoginPartial.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/Shared/_ValidationScriptsPartial.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Pages/Shared/_ValidationScriptsPartial.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/_Host.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Pages/_Host.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Pages/_Layout.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Pages/_ViewImports.cshtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Services/AuthenticationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Services/AuthenticationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Services/BlazorCookieLoginMiddleware.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Services/BlazorCookieLoginMiddleware.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Services/EmailService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Services/EmailService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Shared/Components/BlazorAuthComponentBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Shared/Components/BlazorAuthComponentBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Shared/Components/CustomValidation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Shared/Components/CustomValidation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Shared/Components/RequiredIfAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Shared/Components/RequiredIfAttribute.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Shared/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Shared/MainLayout.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Shared/MainLayout.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Shared/MainLayout.razor.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Shared/SemanticUI/Confirmation.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Shared/SemanticUI/Confirmation.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Shared/SemanticUI/Divider.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Shared/SemanticUI/Divider.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Shared/SemanticUI/Field.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Shared/SemanticUI/Field.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Shared/SemanticUI/Header4.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Shared/SemanticUI/Header4.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Shared/SemanticUI/Loader.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Shared/SemanticUI/Loader.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Shared/SemanticUI/LookupSpinner.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Shared/SemanticUI/LookupSpinner.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Shared/SemanticUI/NavigationLink.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Shared/SemanticUI/NavigationLink.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Shared/SemanticUI/Segment.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Shared/SemanticUI/Segment.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/Shared/SemanticUI/Warning.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/Shared/SemanticUI/Warning.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/_Imports.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/wwwroot/css/bootstrap/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/wwwroot/css/bootstrap/bootstrap.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/wwwroot/css/bootstrap/bootstrap.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/wwwroot/css/bootstrap/bootstrap.min.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/wwwroot/css/open-iconic/FONT-LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/wwwroot/css/open-iconic/FONT-LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/wwwroot/css/open-iconic/ICON-LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/wwwroot/css/open-iconic/ICON-LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/wwwroot/css/open-iconic/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/wwwroot/css/open-iconic/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/wwwroot/css/open-iconic/font/css/open-iconic-bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/wwwroot/css/open-iconic/font/css/open-iconic-bootstrap.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/wwwroot/css/open-iconic/font/fonts/open-iconic.eot" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/wwwroot/css/open-iconic/font/fonts/open-iconic.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/wwwroot/css/open-iconic/font/fonts/open-iconic.otf" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/wwwroot/css/open-iconic/font/fonts/open-iconic.otf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/wwwroot/css/open-iconic/font/fonts/open-iconic.svg" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/wwwroot/css/open-iconic/font/fonts/open-iconic.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/wwwroot/css/open-iconic/font/fonts/open-iconic.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/wwwroot/css/open-iconic/font/fonts/open-iconic.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/wwwroot/css/open-iconic/font/fonts/open-iconic.woff" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/wwwroot/css/open-iconic/font/fonts/open-iconic.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/wwwroot/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/wwwroot/css/site.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorAuth/wwwroot/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/TxB/wwwroot/favicon.ico" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/17a25bf4cd58852e31b6bc798fef1d6289441360eea1912bf89a9b4fd337a3/SingleQueryingEnumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TxB/Data/IdentityContext.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2DbLIARXU2MaHQ6fU55slKs46DF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.BlazorAuth: RentalRatings">
+    <configuration name="BlazorAuth: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/TxB/TxB.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="BlazorAuth: RentalRatings" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/TxB/TxB.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="RentalRatings" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5e58e05f-56a2-4c9a-bea3-1618b6fe5c57" name="Changes" comment="" />
+      <created>1660962755209</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1660962755209</updated>
+      <workItem from="1660962757831" duration="7101000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TxB/Pages/Identity/ConfirmReset.razor</url>
+          <line>1</line>
+          <properties documentPath="C:\Users\anders\source\repos\BlazorAuth\TxB\Pages\Identity\ConfirmReset.razor" initialLine="1" isMultiMethodBreakpoint="true">
+            <option name="multiMethodBreakpoint" value="true" />
+            <startOffsets>
+              <option value="-1" />
+            </startOffsets>
+            <endOffsets>
+              <option value="-1" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TxB/Program.cs</url>
+          <line>64</line>
+          <properties documentPath="C:\Users\anders\source\repos\BlazorAuth\TxB\Program.cs" initialLine="64" containingFunctionPresentation="">
+            <startOffsets>
+              <option value="2020" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2059" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
