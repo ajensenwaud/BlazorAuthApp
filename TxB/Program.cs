@@ -7,13 +7,16 @@ using TxB.Services;
 using TxB.Util;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-// Configure database:
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<IdentityContext>(options =>
-    options.UseSqlite(connectionString));
+/* if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddDbContext<IdentityContext>(options =>
+    options.UseSqlite(connectionString)); 
+} else { */ 
+    builder.Services.AddDbContext<IdentityContext>(options =>
+    options.UseSqlServer(connectionString));
+//}
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<ApplicationRole>()

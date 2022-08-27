@@ -2,6 +2,22 @@
     
 
     <ItemGroup>
+      <None Remove="TxBAdjectives.txt" />
+      <None Remove="TxBNouns.txt" />
+    </ItemGroup>
+    
+
+    <ItemGroup>
+      <EmbeddedResource Include="TxBAdjectives.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <EmbeddedResource Include="TxBNouns.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+    </ItemGroup>
+    
+
+    <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.7" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.7" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.7" />
@@ -13,6 +29,7 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.7" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="NSwag.ApiDescription.Client" Version="13.0.5">
@@ -28,17 +45,12 @@
         <Folder Include="Test\" />
     </ItemGroup>
 
-    <ItemGroup>
-      <None Update="TxBNouns.txt">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
-
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <RootNamespace>TxB</RootNamespace>
+        <UserSecretsId>2471f363-b7b9-41ff-99e5-2f92379d3ff7</UserSecretsId>
     </PropertyGroup>
 
 </Project>

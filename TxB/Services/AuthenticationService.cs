@@ -114,7 +114,7 @@ public class AuthenticationService
         if (makeAdmin) await _userManager.AddToRoleAsync(user, "Admin");
         
         var emailResp = await _emailService.SendActivationEmail(user.Email, $"{user.FirstName} {user.LastName}",
-            _navigationManager.BaseUri, activationKey);
+            _navigationManager.BaseUri + "activate/", activationKey);
 
         if (!emailResp.IsSuccessStatusCode)
         {

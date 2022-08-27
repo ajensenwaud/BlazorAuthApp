@@ -1,16 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TxB.Shared.Components;
 using System.Globalization;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TxB.Data;
 
 public class Proposition
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long Id { get; set; }
-    [Required] public Word Adjective0 { get; set; } 
-    [Required] public Word Adjective1 { get; set; } 
-    [Required] public Word Adjective2 { get; set; }
-    [Required] public Word Noun { get; set; }
+    public Word? Adjective0 { get; set; } 
+    public Word? Adjective1 { get; set; } 
+    public Word? Adjective2 { get; set; }
+    public Word? Noun { get; set; }
     [Required] public DateTime Created { get; set; }
     [Required] public Topic Topic { get; set; }
 

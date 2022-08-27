@@ -8,7 +8,7 @@ using SendGrid.Helpers.Mail;
 public class EmailService
 {
     private const string EMAIL_FROM = "noreply@relationspaceonline.com.au";
-    private const string FULLNAME_FROM = "Fintech Proposition Generator";
+    private const string FULLNAME_FROM = "FinTech Proposition Generator";
 
     public EmailService(ILogger<EmailService> logger)
     {
@@ -46,7 +46,7 @@ Content HTML:
     {
         var fullUrl = baseUrl + activationKey;
         var plainWelcome = $@"Dear {nameTo}
-Someone (possibly you) has requested to reset the password for your Fintech Proposition Generator account. Follow the link below to reset your password:
+Someone (possibly you) has requested to reset the password for your FinTech Proposition Generator account. Follow the link below to reset your password:
 
 {fullUrl}
 
@@ -68,7 +68,7 @@ All the best,<br /><br />
 The FinTech Proposition Generator Crew
 ";
 
-        var subj = "Rental Ratings - reset account password";
+        var subj = "FinTech Proposition Generator - reset account password";
         
         Logger.LogInformation($@"Sending password reset email to {nameTo} <{emailTo}>; subject = {subj}");
 

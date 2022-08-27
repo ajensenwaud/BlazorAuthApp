@@ -1,17 +1,18 @@
 ﻿@page "/Submit"
 @using TxB.Data
 @using TxB.Services
+@using TxB.Shared.SemanticUI
 @inject SessionState _sessionState;
 @inject WordService _wordService;
 <Header4>Submit new word / sentence</Header4>
 
 <AuthorizeView>
-    <Authorized>
+    <NotAuthorized>
         <div Context="Rubbish">
             <h1>Have to redirect somehow...</h1>
         </div>
-    </Authorized>
-    <NotAuthorized>
+    </NotAuthorized>
+    <Authorized>
         <EditForm Context="registration" Model="NewWord" class="ui form" OnSubmit="@HandleValidSubmit">
             <h4 class="ui dividing header">New word</h4>
             <DataAnnotationsValidator />
@@ -38,7 +39,7 @@
         <Warning Show="@ShowError" Header="Submission error">
             An error occured whilst processing your submission. Please contact support.
         </Warning>
-    </NotAuthorized>
+    </Authorized>
 </AuthorizeView>
 
 @code {

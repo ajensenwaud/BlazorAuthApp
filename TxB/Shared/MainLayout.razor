@@ -3,10 +3,10 @@
 @inherits LayoutComponentBase
 @inject SessionState SessionState;
 
-<PageTitle>Fintech proposition generator</PageTitle>
+<PageTitle>FinTech proposition generator</PageTitle>
 
 <div class="ui container">
-    <h2 class="ui dividing header">Fintech proposition generator</h2>
+    <h2 class="ui dividing header">FinTech Proposition Generator</h2>
     <div class="ui menu">
         <NavigationLink Href="/">Home</NavigationLink>
         <AuthorizeView Roles="Admin, User">
@@ -15,6 +15,7 @@
                 <NavigationLink Href="/register">Sign up</NavigationLink>
             </NotAuthorized>
             <Authorized>
+                <NavigationLink Href="/submit">Submit new suggestions</NavigationLink>
                 <NavigationLink Href="/profile">My profile</NavigationLink>
                 <NavigationLink Href="/logout">Log out</NavigationLink>
             </Authorized>
