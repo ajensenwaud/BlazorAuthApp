@@ -12,11 +12,29 @@
 
 <div class="ui container">
     <h4 class="ui header">Your transaction banking proposition is ...</h4>
-    <h3 class="ui block header">@Proposition.ToString()</h3>
-    <button @onclick="RefreshProposition" class="ui button massive primary">
+
+
+    
+
+    
+    @if (Loading)
+    {
+        <div class="ui segment">
+          <p></p>
+          <div class="ui active dimmer">
+            <div class="ui loader"></div>
+          </div>
+        </div>
+    } else
+    {
+        <h3 class="ui block header">@Proposition.ToString()</h3>    
+    }
+
+    <button @onclick="RefreshProposition" class="ui button primary">
         <i class=" refresh icon"></i>
         Give me a new one, please!
-    </button>
+     </button>
+
 </div>
 
 <div class="ui container">
@@ -28,7 +46,9 @@
     private ClaimsPrincipal User { get; set; }
 
     private Proposition Proposition { get; set; }
-    
+
+    private bool Loading { get; set; } = false;
+
     protected async override void OnInitialized()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
@@ -37,9 +57,13 @@
         Proposition = prop;
     }
 
-    private void RefreshProposition()
+    private async void RefreshProposition()
     {
+        Loading = true;
+        await Task.Delay(1);
         var prop = WordService.GenerateProposition();
+        await Task.Delay(1);
+        Loading = false;
         Proposition = prop;
         StateHasChanged();
     }
