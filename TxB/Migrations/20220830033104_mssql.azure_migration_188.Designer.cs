@@ -12,8 +12,8 @@ using TxB.Data;
 namespace TxB.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20220830023544_mssql.azure_migration_970")]
-    partial class mssqlazure_migration_970
+    [Migration("20220830033104_mssql.azure_migration_188")]
+    partial class mssqlazure_migration_188
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -112,13 +112,13 @@ namespace TxB.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("e229df1a-0941-4ba6-b234-37828ae475e2"),
-                            RoleId = new Guid("b220aec4-87d7-4640-9dc3-18f641d99f0f")
+                            UserId = new Guid("656c7e61-70c3-416d-8231-556329f4025e"),
+                            RoleId = new Guid("777d0bc7-465f-4a28-8793-609fec37bfdd")
                         },
                         new
                         {
-                            UserId = new Guid("e229df1a-0941-4ba6-b234-37828ae475e2"),
-                            RoleId = new Guid("f996ef7b-24f2-4c31-a69a-d39dc0bee721")
+                            UserId = new Guid("656c7e61-70c3-416d-8231-556329f4025e"),
+                            RoleId = new Guid("fcd5f084-696a-4789-9ff5-2fab082850da")
                         });
                 });
 
@@ -173,15 +173,15 @@ namespace TxB.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b220aec4-87d7-4640-9dc3-18f641d99f0f"),
-                            ConcurrencyStamp = "9367b118-a3b9-4116-b1b8-b2abcd85b59f",
+                            Id = new Guid("777d0bc7-465f-4a28-8793-609fec37bfdd"),
+                            ConcurrencyStamp = "b7eb087e-a5a0-41c4-a726-91633de9cc43",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = new Guid("f996ef7b-24f2-4c31-a69a-d39dc0bee721"),
-                            ConcurrencyStamp = "9663f319-ad2d-4027-ac0f-c14fa7636f0c",
+                            Id = new Guid("fcd5f084-696a-4789-9ff5-2fab082850da"),
+                            ConcurrencyStamp = "c8efa95c-ee6d-475b-8e35-77d9af2fcdee",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -280,11 +280,11 @@ namespace TxB.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e229df1a-0941-4ba6-b234-37828ae475e2"),
+                            Id = new Guid("656c7e61-70c3-416d-8231-556329f4025e"),
                             AccessFailedCount = 0,
                             ActivationKey = "",
                             ConcurrencyStamp = "",
-                            CreatedAt = new DateTime(2022, 8, 30, 10, 35, 44, 395, DateTimeKind.Local).AddTicks(7587),
+                            CreatedAt = new DateTime(2022, 8, 30, 11, 31, 4, 120, DateTimeKind.Local).AddTicks(1286),
                             Email = "anders@jensenwaud.com",
                             EmailConfirmed = true,
                             FirstName = "Anders Admin",
@@ -293,13 +293,13 @@ namespace TxB.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "anders@jensenwaud.com",
                             NormalizedUserName = "Admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFj+UUInmGyNCEAl1WScalAy+mVMhOVAQuGlJlgd8DdwzNC2And9FteVYeB+8J6ILA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF2PpaeodvgubS8MkmdNQxjyQ/x3c6Kz3fipFA3CYpUOEuV4NQb4RTXxYAHc+alxZA==",
                             PhoneNumber = "00000000",
                             PhoneNumberConfirmed = true,
                             ResetKey = "",
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2022, 8, 30, 10, 35, 44, 395, DateTimeKind.Local).AddTicks(7606),
+                            UpdatedAt = new DateTime(2022, 8, 30, 11, 31, 4, 120, DateTimeKind.Local).AddTicks(1298),
                             UserName = "Admin"
                         });
                 });

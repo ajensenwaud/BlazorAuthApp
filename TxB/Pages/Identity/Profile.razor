@@ -1,13 +1,14 @@
 ﻿@page "/profile"
-@inherits BlazorAuthComponentBase
 @using TxB.Data
 @using TxB.Models
 @using TxB.Shared.Components
 @using TxB.Shared.SemanticUI
 @using Microsoft.AspNetCore.Identity
-@inject NavigationManager NavigationManager;
+
 @inject SessionState SessionState;
+@inject NavigationManager NavigationManager;
 @inject UserManager<ApplicationUser> UserManager;
+@inject AuthenticationStateProvider AuthenticationStateProvider;
 
 <AuthorizeView Roles="Admin, User">
     <Authorized>
@@ -38,9 +39,9 @@
             <Confirmation Show=@ShowUserChangeConfirmation Header="Details updated">
                 <p>Your account details have been successfully updated.</p>
             </Confirmation>
-            <RentalRatings.Shared.SemanticUI.Warning Show=@ShowUserChangeError Header="Unexpected error">
+            <Warning Show=@ShowUserChangeError Header="Unexpected error">
                 <p>An unexpected error occurred. Please contact support.</p>
-            </RentalRatings.Shared.SemanticUI.Warning>
+            </Warning>
         </EditForm>
 
         <h4 class="ui dividing header">Change password</h4>
@@ -84,15 +85,18 @@
     protected bool ShowPasswordChangeError { get; set; }
     protected string PasswordChangeErrorText { get; set; } = string.Empty; 
 
-
+    private async Task<ApplicationUser> GetApplicationUser()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var identity = authState.User.Identity;
+        var user = await UserManager.GetUserAsync(authState.User);
+        return user;
+    }
 
     protected override async void OnInitialized()
     {
         base.OnInitialized();
-        if (!SessionState.IsAuthenticated)
-            NavigationManager.NavigateTo("/");
-
-        User = await UserManager.FindByIdAsync(SessionState.CurrentUser?.Id.ToString());
+        User = await GetCurrentUser();
         UserEditFormModel = new();
         UserEditFormModel.Username = User.UserName;
         UserEditFormModel.FirstName = User.FirstName;

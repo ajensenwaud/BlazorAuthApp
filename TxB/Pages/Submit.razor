@@ -58,11 +58,11 @@
         // if (_sessionState.CurrentUser != null) NewWord.SubmittedBy = _sessionState.CurrentUser;
     }
 
-    private void HandleValidSubmit()
+    private async void HandleValidSubmit()
     {
         var topic = _wordService.FindTopic("TxB");
         NewWord.Topic = topic;
-        NewWord.SubmittedBy = _sessionState.CurrentUser;
+        NewWord.SubmittedBy = await GetCurrentUser();
 
         var c = _wordService.SaveWord(NewWord);
         if (c > 0)

@@ -13,9 +13,27 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 {
     builder.Services.AddDbContext<IdentityContext>(options =>
     options.UseSqlite(connectionString)); 
-} else { */ 
-    builder.Services.AddDbContext<IdentityContext>(options =>
-    options.UseSqlServer(connectionString));
+} else { */
+builder.Services.AddDbContext<IdentityContext>(options =>
+options.UseSqlServer(connectionString, sqlServerOptionsAction: sqlOptions =>
+{
+    sqlOptions.EnableRetryOnFailure(
+    maxRetryCount: 3,
+    maxRetryDelay: TimeSpan.FromSeconds(30),
+    errorNumbersToAdd: null);
+}));
+
+
+
+/*
+ * 
+ *                        sqlServerOptionsAction: sqlOptions =>
+                       {
+                           sqlOptions.EnableRetryOnFailure(
+                           maxRetryCount: 3,
+                           maxRetryDelay: TimeSpan.FromSeconds(30),
+                           errorNumbersToAdd: null);
+                       });*/
 //}
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
