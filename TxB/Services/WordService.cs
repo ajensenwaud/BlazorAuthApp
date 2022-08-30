@@ -16,6 +16,13 @@ public class WordService
     {
         return _identityContext.Words.Where(x => x.Status != status).Include(x => x.SubmittedBy).ToList();
     }
+
+    public Topic FindTopic(string topic)
+    {
+        var topics = _identityContext.Topics.Where(t => t.TopicName == topic.Trim());
+        return topics.Count() == 0 ? throw new ArgumentException($"Could not find topic '{topic}") : topics.ToList()[0];
+
+    }
     
     
     public IEnumerable<Word> GetWords()

@@ -52,8 +52,8 @@
 
     protected override void OnInitialized()
     {
-        // Words = WordService.GetWordsNot(WordStatus.Deleted);
-        Words = WordService.GetWords();
+        Words = WordService.GetWordsNot(WordStatus.Deleted);
+        // Words = WordService.GetWords();
     }
 
     protected async void Delete(Word w)

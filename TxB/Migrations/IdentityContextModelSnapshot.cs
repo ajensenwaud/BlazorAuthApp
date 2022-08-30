@@ -110,13 +110,13 @@ namespace TxB.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("a56f78b9-1dbf-436b-98dd-d62907aaa86f"),
-                            RoleId = new Guid("e76aea44-78ef-4c2e-8ff6-25eb7f59659e")
+                            UserId = new Guid("e229df1a-0941-4ba6-b234-37828ae475e2"),
+                            RoleId = new Guid("b220aec4-87d7-4640-9dc3-18f641d99f0f")
                         },
                         new
                         {
-                            UserId = new Guid("a56f78b9-1dbf-436b-98dd-d62907aaa86f"),
-                            RoleId = new Guid("bcb17a1c-1656-4447-9355-defc61a77c84")
+                            UserId = new Guid("e229df1a-0941-4ba6-b234-37828ae475e2"),
+                            RoleId = new Guid("f996ef7b-24f2-4c31-a69a-d39dc0bee721")
                         });
                 });
 
@@ -171,15 +171,15 @@ namespace TxB.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e76aea44-78ef-4c2e-8ff6-25eb7f59659e"),
-                            ConcurrencyStamp = "364344e8-be02-4a75-a612-9776270b493d",
+                            Id = new Guid("b220aec4-87d7-4640-9dc3-18f641d99f0f"),
+                            ConcurrencyStamp = "9367b118-a3b9-4116-b1b8-b2abcd85b59f",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = new Guid("bcb17a1c-1656-4447-9355-defc61a77c84"),
-                            ConcurrencyStamp = "fe95e8c4-b611-42eb-80f9-ae045e0e3c1d",
+                            Id = new Guid("f996ef7b-24f2-4c31-a69a-d39dc0bee721"),
+                            ConcurrencyStamp = "9663f319-ad2d-4027-ac0f-c14fa7636f0c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -278,11 +278,11 @@ namespace TxB.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a56f78b9-1dbf-436b-98dd-d62907aaa86f"),
+                            Id = new Guid("e229df1a-0941-4ba6-b234-37828ae475e2"),
                             AccessFailedCount = 0,
                             ActivationKey = "",
                             ConcurrencyStamp = "",
-                            CreatedAt = new DateTime(2022, 8, 26, 18, 35, 13, 994, DateTimeKind.Local).AddTicks(9118),
+                            CreatedAt = new DateTime(2022, 8, 30, 10, 35, 44, 395, DateTimeKind.Local).AddTicks(7587),
                             Email = "anders@jensenwaud.com",
                             EmailConfirmed = true,
                             FirstName = "Anders Admin",
@@ -291,13 +291,13 @@ namespace TxB.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "anders@jensenwaud.com",
                             NormalizedUserName = "Admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPXHcE6qBEjIhnQanGpXxyKxZnhqHJSQmeu47+qNYYg/aDJwSFQrmj2rDkO0afyaMg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFj+UUInmGyNCEAl1WScalAy+mVMhOVAQuGlJlgd8DdwzNC2And9FteVYeB+8J6ILA==",
                             PhoneNumber = "00000000",
                             PhoneNumberConfirmed = true,
                             ResetKey = "",
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2022, 8, 26, 18, 35, 13, 994, DateTimeKind.Local).AddTicks(9134),
+                            UpdatedAt = new DateTime(2022, 8, 30, 10, 35, 44, 395, DateTimeKind.Local).AddTicks(7606),
                             UserName = "Admin"
                         });
                 });

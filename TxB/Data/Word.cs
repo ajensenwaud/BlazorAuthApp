@@ -33,10 +33,13 @@ public class Topic
 public class Word
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long Id { get; set; }
     [Required] public WordType WordType { get; set; } = WordType.Other;
-    [Required] public string Text { get; set; }
+
+    
+    [Required]
+    [MinLength(3, ErrorMessage = "Suggestions must be at least three characters")]
+    public string Text { get; set; }
     [Required] public Topic Topic { get; set; }
     
     [Required]

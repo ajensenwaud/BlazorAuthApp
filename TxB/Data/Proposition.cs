@@ -7,8 +7,6 @@ namespace TxB.Data;
 
 public class Proposition
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long Id { get; set; }
     public Word? Adjective0 { get; set; } 
     public Word? Adjective1 { get; set; } 
