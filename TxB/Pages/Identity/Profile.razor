@@ -74,9 +74,9 @@
 
     private ApplicationUser User { get; set; }
 
-    private UserEditFormModel UserEditFormModel { get; set; }
+    private UserEditFormModel UserEditFormModel { get; set; } = new();
 
-    private ChangePasswordFormModel ChangePasswordFormModel { get; set; }
+    private ChangePasswordFormModel ChangePasswordFormModel { get; set; } = new();
 
     protected bool ShowUserChangeConfirmation { get; set; }
     protected bool ShowUserChangeError { get; set; }
@@ -96,7 +96,7 @@
     protected override async void OnInitialized()
     {
         base.OnInitialized();
-        User = await GetCurrentUser();
+        User = await GetApplicationUser();
         UserEditFormModel = new();
         UserEditFormModel.Username = User.UserName;
         UserEditFormModel.FirstName = User.FirstName;
@@ -109,7 +109,7 @@
 
     private async void HandleChangeAccountDetails()
     {
-        var u = await GetCurrentUser();
+        var u = await GetApplicationUser();
         u.FirstName = UserEditFormModel.FirstName;
         u.LastName = UserEditFormModel.LastName;
         u.UpdatedAt = DateTime.Now;
@@ -129,7 +129,7 @@
 
     private async void HandleChangePassword()
     {
-        var u = await GetCurrentUser();
+        var u = await GetApplicationUser();
         // Validate current password:
         bool currentPasswordCorrect = await UserManager.CheckPasswordAsync(u, ChangePasswordFormModel.CurrentPassword);
         if (!currentPasswordCorrect)
@@ -140,7 +140,7 @@
             return;
         }
 
-        var u1 = await GetCurrentUser();
+        var u1 = await GetApplicationUser();
         var token = await UserManager.GeneratePasswordResetTokenAsync(u1);
         var passwdres = await UserManager.ResetPasswordAsync(u1, token, ChangePasswordFormModel.NewPassword);
         if (passwdres.Succeeded)
@@ -152,10 +152,5 @@
             PasswordChangeErrorText = "An unexpected error occurred happened while changing your password. Please try again or contact support.";
         }
         StateHasChanged();
-    }
-
-    private async Task<ApplicationUser> GetCurrentUser()
-    {
-        return await UserManager.FindByIdAsync(SessionState.CurrentUser?.Id.ToString());
     }
 }

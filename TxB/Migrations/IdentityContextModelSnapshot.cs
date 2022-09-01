@@ -110,13 +110,13 @@ namespace TxB.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("656c7e61-70c3-416d-8231-556329f4025e"),
-                            RoleId = new Guid("777d0bc7-465f-4a28-8793-609fec37bfdd")
+                            UserId = new Guid("3d7d6741-4d24-45e9-9bac-5b677ea61c51"),
+                            RoleId = new Guid("8dc78e25-b1f5-47ee-a7fd-fe8e4088f6fe")
                         },
                         new
                         {
-                            UserId = new Guid("656c7e61-70c3-416d-8231-556329f4025e"),
-                            RoleId = new Guid("fcd5f084-696a-4789-9ff5-2fab082850da")
+                            UserId = new Guid("3d7d6741-4d24-45e9-9bac-5b677ea61c51"),
+                            RoleId = new Guid("4d8c8616-2f25-4299-80be-4ed82af2c5c5")
                         });
                 });
 
@@ -171,15 +171,15 @@ namespace TxB.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("777d0bc7-465f-4a28-8793-609fec37bfdd"),
-                            ConcurrencyStamp = "b7eb087e-a5a0-41c4-a726-91633de9cc43",
+                            Id = new Guid("8dc78e25-b1f5-47ee-a7fd-fe8e4088f6fe"),
+                            ConcurrencyStamp = "b63fdaf1-2f4e-443a-9e5b-d4449c3e5582",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = new Guid("fcd5f084-696a-4789-9ff5-2fab082850da"),
-                            ConcurrencyStamp = "c8efa95c-ee6d-475b-8e35-77d9af2fcdee",
+                            Id = new Guid("4d8c8616-2f25-4299-80be-4ed82af2c5c5"),
+                            ConcurrencyStamp = "0746e765-0609-4568-8fa3-6f7ef51b7e5e",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -278,11 +278,11 @@ namespace TxB.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("656c7e61-70c3-416d-8231-556329f4025e"),
+                            Id = new Guid("3d7d6741-4d24-45e9-9bac-5b677ea61c51"),
                             AccessFailedCount = 0,
                             ActivationKey = "",
                             ConcurrencyStamp = "",
-                            CreatedAt = new DateTime(2022, 8, 30, 11, 31, 4, 120, DateTimeKind.Local).AddTicks(1286),
+                            CreatedAt = new DateTime(2022, 9, 1, 12, 43, 6, 893, DateTimeKind.Local).AddTicks(6622),
                             Email = "anders@jensenwaud.com",
                             EmailConfirmed = true,
                             FirstName = "Anders Admin",
@@ -291,13 +291,13 @@ namespace TxB.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "anders@jensenwaud.com",
                             NormalizedUserName = "Admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEF2PpaeodvgubS8MkmdNQxjyQ/x3c6Kz3fipFA3CYpUOEuV4NQb4RTXxYAHc+alxZA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENwwsu7OvFKRQtyNTUySbZeTrVCrkg2CNu9FGT/owcqCUos0p42UnxPuY5jkY5MsQw==",
                             PhoneNumber = "00000000",
                             PhoneNumberConfirmed = true,
                             ResetKey = "",
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2022, 8, 30, 11, 31, 4, 120, DateTimeKind.Local).AddTicks(1298),
+                            UpdatedAt = new DateTime(2022, 9, 1, 12, 43, 6, 893, DateTimeKind.Local).AddTicks(6631),
                             UserName = "Admin"
                         });
                 });
@@ -412,7 +412,7 @@ namespace TxB.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("SubmittedById")
+                    b.Property<Guid?>("SubmittedById")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Text")
@@ -541,9 +541,7 @@ namespace TxB.Migrations
                 {
                     b.HasOne("TxB.Data.ApplicationUser", "SubmittedBy")
                         .WithMany()
-                        .HasForeignKey("SubmittedById")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SubmittedById");
 
                     b.HasOne("TxB.Data.Topic", "Topic")
                         .WithMany("Words")

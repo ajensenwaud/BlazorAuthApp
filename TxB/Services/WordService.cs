@@ -65,20 +65,16 @@ public class WordService
 
     public int SaveWord(Word w)
     {
-        _identityContext.Database.BeginTransaction();
         _identityContext.Words.Add(w);
         var c = _identityContext.SaveChanges();
-        _identityContext.Database.CommitTransaction();
         return c;
     }
     
     
     public int UpdateWord(Word w)
     {
-        _identityContext.Database.BeginTransaction();
         _identityContext.Words.Update(w);
         var c = _identityContext.SaveChanges();
-        _identityContext.Database.CommitTransaction();
         return c;
     }
 

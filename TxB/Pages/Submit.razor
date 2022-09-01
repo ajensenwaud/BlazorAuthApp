@@ -1,49 +1,64 @@
 ﻿@page "/Submit"
+@using System.ComponentModel.DataAnnotations
 @using TxB.Data
 @using TxB.Services
 @using TxB.Shared.Components
 @using TxB.Shared.SemanticUI
-@inherits BlazorAuthComponentBase
 @inject SessionState _sessionState;
 @inject WordService _wordService;
-<AuthorizeView>
-    <NotAuthorized>
-        <div Context="Rubbish">
-            <h1>Have to redirect somehow...</h1>
+
+<EditForm Context="registration" Model="NewWord" class="ui form" OnSubmit="@HandleValidSubmit">
+    <h4 class="ui dividing header">Submit new word suggestion for FinTech proposition generator database</h4>
+    <DataAnnotationsValidator />
+    <Segment Header="Submit new word">
+        <div class="field">
+            <label>Suggested word</label>
+            <InputText type="text" @bind-Value="NewWord.Text" placeholder="Enter your suggested word"></InputText>
+            <ValidationMessage For="() => NewWord.Text"/>
         </div>
-    </NotAuthorized>
-    <Authorized>
-        <EditForm Context="registration" Model="NewWord" class="ui form" OnSubmit="@HandleValidSubmit">
-            <h4 class="ui dividing header">Submit new word suggestion for FinTech proposition generator database</h4>
-            <DataAnnotationsValidator />
-            <Segment Header="Submit new word">
-                <div class="field">
-                    <label>Suggested word</label>
-                    <InputText type="text" @bind-Value="NewWord.Text" placeholder="Enter your suggested word"></InputText>
-                    <ValidationMessage For="() => NewWord.Text"/>
-                </div>
-                <Field Label="What type of word is it?">
-                    <InputSelect @bind-Value="@NewWord.WordType" class="ui selection dropdown">
-                        @foreach (var wt in Enum.GetValues(typeof(WordType)))
-                        {
-                            <option value="@wt">@wt</option>
-                        }
-                    </InputSelect>
-                </Field>
-                <button type="submit" class="ui button primary">Submit suggestion</button>
-            </Segment>
-        </EditForm>
+        <Field Label="What type of word is it?">
+            <InputSelect @bind-Value="@NewWord.WordType" class="ui selection dropdown">
+                @foreach (var wt in Enum.GetValues(typeof(WordType)))
+                {
+                    <option value="@wt">@wt</option>
+                }
+            </InputSelect>
+        </Field>
+        <Field Label="Prove you are human: What is 35 + five?">
+            <InputNumber @bind-Value=Answer placeholder="Enter your answer" />
+        </Field>
+
+        @if (Submitting)
+        {
+            <div class="ui segment">
+              <p></p>
+              <div class="ui active dimmer">
+                <div class="ui loader"></div>
+              </div>
+            </div>
+        } 
+
+        <button type="submit" class="ui button primary">Submit suggestion</button>
+    </Segment>
+</EditForm>
         
-        <Confirmation Show="@ShowConfirmation" Header="Account created">
-            Your suggestion has been submitted. An admin will review soon!
-        </Confirmation>
-        <Warning Show="@ShowError" Header="Submission error">
-            An error occured whilst processing your submission. Please contact support.
-        </Warning>
-    </Authorized>
-</AuthorizeView>
+<Confirmation Show="@ShowConfirmation" Header="Suggestion submitted">
+    Your suggestion has been submitted. An admin will review soon!
+</Confirmation>
+<Warning Show="@ShowError" Header="Submission error">
+    An error occured whilst processing your submission. Please contact support.
+</Warning>
+<Warning Show="@NotHuman" Header="You are not human">
+    You didn't enter the correct value. Are you human?
+</Warning>
+
 
 @code {
+    public bool Submitting { get; set; } = false;
+
+    public int Answer { get; set; } = 0;
+
+    public bool NotHuman { get; set; } = false;
 
     public Word NewWord { get; set; }
 
@@ -55,14 +70,23 @@
     {
         base.OnInitialized();
         ResetWord();
-        // if (_sessionState.CurrentUser != null) NewWord.SubmittedBy = _sessionState.CurrentUser;
     }
 
     private async void HandleValidSubmit()
     {
+        if (Answer != 40)
+        {
+            NotHuman = true;
+            StateHasChanged();
+            return;    
+        }
+
+        Submitting = true;
+        await Task.Delay(1);
+
         var topic = _wordService.FindTopic("TxB");
         NewWord.Topic = topic;
-        NewWord.SubmittedBy = await GetCurrentUser();
+        // NewWord.SubmittedBy = await GetCurrentUser();
 
         var c = _wordService.SaveWord(NewWord);
         if (c > 0)
@@ -73,6 +97,9 @@
         {
             ShowError = true;
         }
+        Submitting = false;
+        await Task.Delay(1);
+        StateHasChanged();
         ResetWord();
     }
 

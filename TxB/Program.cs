@@ -18,7 +18,7 @@ builder.Services.AddDbContext<IdentityContext>(options =>
 options.UseSqlServer(connectionString, sqlServerOptionsAction: sqlOptions =>
 {
     sqlOptions.EnableRetryOnFailure(
-    maxRetryCount: 3,
+    maxRetryCount: 10,
     maxRetryDelay: TimeSpan.FromSeconds(30),
     errorNumbersToAdd: null);
 }));

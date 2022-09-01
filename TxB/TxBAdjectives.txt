@@ -12,4 +12,11 @@ Customer-centric
 Multi-currency
 Multi-country
 Automated
+Instant
+Permissionless
+Zero-trust
 Digitized
+ISO20022 compliant
+Cardless
+Censorship-resistance
+Proof-of-stake-algorithmic

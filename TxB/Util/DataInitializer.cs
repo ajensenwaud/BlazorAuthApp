@@ -12,7 +12,6 @@ public class DataInitializer
     public static void SeedTxBData(IdentityContext context)
     {
         context.Database.EnsureCreated();
-        context.Database.BeginTransaction();
         try
         {
             // Find an admin user: 
@@ -46,11 +45,10 @@ public class DataInitializer
             }
 
             int saved = context.SaveChanges();
-            context.Database.CommitTransaction();
+            
         }
         catch (Exception ex)
         {
-            context.Database.RollbackTransaction();
             throw new ApplicationException("Data seeding failed.", ex);
         }
 

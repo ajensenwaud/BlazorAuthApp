@@ -14,3 +14,32 @@ Collections
 Payments
 A2A payments
 Cross-border payments
+MAss cross-border payroll
+B2B payments
+B2C payments
+Digital currency
+Digital asset
+Blockchain
+Distributed ledger
+Smart contract
+Pooling
+Auto sweeping
+Warehouse financing
+Supplier financing with recourse
+Supplier financing without recourse
+Clearing and settlement infrastructure
+Store and forward platform
+API platform
+Digital currency
+Transaction Banking
+Intelligent network routing
+Post-trade servicing
+BNPL
+SME lending
+Micro finance
+Banking-as-a-service
+Central Bank Digital Currency
+Custody service
+Custody-as-a-service
+H2H integration
+Letter of credit

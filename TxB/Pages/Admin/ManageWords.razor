@@ -23,7 +23,6 @@
                     <th>Word</th>
                     <th>Type</th>
                     <th>Status</th>
-                    <th>Submitted by</th>
                     <th>Commands</th>
                 </tr>
                 @foreach (var w in Words)
@@ -33,7 +32,6 @@
                         <td data-label="Word">@w.Text</td>
                         <td data-label="Type">@w.WordType</td>
                         <td data-label="Status">@w.Status</td>
-                        <td data-label="Submitted by">@w.SubmittedBy.ToString()</td>
                         <td data-label="Commands">
                             <button class="ui button" @onclick="@(() => EditUser(w))">Edit</button>
                             <button class="ui button yellow" @onclick="@(() => MakeDraft(w))">Set draft</button>

@@ -42,8 +42,7 @@ public class Word
     public string Text { get; set; }
     [Required] public Topic Topic { get; set; }
     
-    [Required]
-    public ApplicationUser SubmittedBy { get; set; }
+    public ApplicationUser? SubmittedBy { get; set; }
 
     [Required] public WordStatus Status { get; set; } = WordStatus.Draft;
 }

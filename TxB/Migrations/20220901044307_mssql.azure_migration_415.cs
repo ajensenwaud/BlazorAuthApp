@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TxB.Migrations
 {
-    public partial class mssqlazure_migration_188 : Migration
+    public partial class mssqlazure_migration_415 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -183,7 +183,7 @@ namespace TxB.Migrations
                     WordType = table.Column<int>(type: "int", nullable: false),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TopicId = table.Column<long>(type: "bigint", nullable: false),
-                    SubmittedById = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SubmittedById = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -193,8 +193,7 @@ namespace TxB.Migrations
                         name: "FK_Words_AspNetUsers_SubmittedById",
                         column: x => x.SubmittedById,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Words_Topics_TopicId",
                         column: x => x.TopicId,
@@ -279,14 +278,14 @@ namespace TxB.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("777d0bc7-465f-4a28-8793-609fec37bfdd"), "b7eb087e-a5a0-41c4-a726-91633de9cc43", "User", "USER" },
-                    { new Guid("fcd5f084-696a-4789-9ff5-2fab082850da"), "c8efa95c-ee6d-475b-8e35-77d9af2fcdee", "Admin", "ADMIN" }
+                    { new Guid("4d8c8616-2f25-4299-80be-4ed82af2c5c5"), "0746e765-0609-4568-8fa3-6f7ef51b7e5e", "Admin", "ADMIN" },
+                    { new Guid("8dc78e25-b1f5-47ee-a7fd-fe8e4088f6fe"), "b63fdaf1-2f4e-443a-9e5b-d4449c3e5582", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ActivationKey", "ConcurrencyStamp", "CreatedAt", "Email", "EmailConfirmed", "FirstName", "Is18OrAbove", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ResetKey", "SecurityStamp", "TwoFactorEnabled", "UpdatedAt", "UserName" },
-                values: new object[] { new Guid("656c7e61-70c3-416d-8231-556329f4025e"), 0, "", "", new DateTime(2022, 8, 30, 11, 31, 4, 120, DateTimeKind.Local).AddTicks(1286), "anders@jensenwaud.com", true, "Anders Admin", true, "Jensen", false, null, "anders@jensenwaud.com", "Admin", "AQAAAAEAACcQAAAAEF2PpaeodvgubS8MkmdNQxjyQ/x3c6Kz3fipFA3CYpUOEuV4NQb4RTXxYAHc+alxZA==", "00000000", true, "", "", false, new DateTime(2022, 8, 30, 11, 31, 4, 120, DateTimeKind.Local).AddTicks(1298), "Admin" });
+                values: new object[] { new Guid("3d7d6741-4d24-45e9-9bac-5b677ea61c51"), 0, "", "", new DateTime(2022, 9, 1, 12, 43, 6, 893, DateTimeKind.Local).AddTicks(6622), "anders@jensenwaud.com", true, "Anders Admin", true, "Jensen", false, null, "anders@jensenwaud.com", "Admin", "AQAAAAEAACcQAAAAENwwsu7OvFKRQtyNTUySbZeTrVCrkg2CNu9FGT/owcqCUos0p42UnxPuY5jkY5MsQw==", "00000000", true, "", "", false, new DateTime(2022, 9, 1, 12, 43, 6, 893, DateTimeKind.Local).AddTicks(6631), "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Topics",
@@ -300,12 +299,12 @@ namespace TxB.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { new Guid("777d0bc7-465f-4a28-8793-609fec37bfdd"), new Guid("656c7e61-70c3-416d-8231-556329f4025e") });
+                values: new object[] { new Guid("4d8c8616-2f25-4299-80be-4ed82af2c5c5"), new Guid("3d7d6741-4d24-45e9-9bac-5b677ea61c51") });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { new Guid("fcd5f084-696a-4789-9ff5-2fab082850da"), new Guid("656c7e61-70c3-416d-8231-556329f4025e") });
+                values: new object[] { new Guid("8dc78e25-b1f5-47ee-a7fd-fe8e4088f6fe"), new Guid("3d7d6741-4d24-45e9-9bac-5b677ea61c51") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
